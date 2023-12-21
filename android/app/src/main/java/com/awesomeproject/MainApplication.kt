@@ -14,6 +14,9 @@ import com.facebook.react.defaults.DefaultReactHost.getDefaultReactHost
 import com.facebook.react.defaults.DefaultReactNativeHost
 import com.facebook.react.flipper.ReactNativeFlipper
 import com.facebook.soloader.SoLoader
+import com.rnfs.RNFSPackage;
+import com.RNFetchBlob.RNFetchBlobPackage;
+import com.reactlibrary.TfliteReactNativePackage;
 
 class MainApplication : Application(), ReactApplication {
 
@@ -22,6 +25,10 @@ class MainApplication : Application(), ReactApplication {
         override fun getPackages(): List<ReactPackage> {
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new MyReactNativePackage());
+          ew MainReactPackage(), // <---- add comma
+          new RNFSPackage()
+          new RNFetchBlobPackage() 
+          new TfliteReactNativePackage()
           return PackageList(this).packages
         }
 

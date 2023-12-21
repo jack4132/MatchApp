@@ -9,16 +9,20 @@ const {mergeConfig} = require('@react-native/metro-config');
  */
 const config = {};
 
-module.exports = mergeConfig(getDefaultConfig(__dirname), config);
+// module.exports = mergeConfig(getDefaultConfig(__dirname), config);
 
-// const {getDefaultConfig} = require('metro-config');
-// module.exports = (async () => {
-//   const defaultConfig = await getDefaultConfig();
-//   const {assetExts} = defaultConfig.resolver;
-//   return {
-//     resolver: {
-//       // Add bin to assetExts
-//       assetExts: [...assetExts, 'bin'],
-//     },
-//   };
-// })();
+// const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
+
+module.exports = function (baseConfig) {
+  const defaultConfig = mergeConfig(baseConfig, getDefaultConfig(__dirname));
+  const {
+    resolver: {assetExts, sourceExts},
+  } = defaultConfig;
+
+  return mergeConfig(defaultConfig, {
+    resolver: {
+      assetExts: [...assetExts.filter(ext => ext !== 'svg'), 'tflite'],
+      sourceExts: [...sourceExts, 'svg'],
+    },
+  });
+};

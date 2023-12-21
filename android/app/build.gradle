@@ -82,6 +82,9 @@ android {
     ndkVersion rootProject.ext.ndkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
+    aaptOptions {
+    noCompress 'tflite'
+}
 
     namespace "com.awesomeproject"
     defaultConfig {
@@ -117,7 +120,9 @@ dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
     implementation("com.facebook.react:flipper-integration")
-
+    implementation project(':react-native-fs')
+     implementation project(':rn-fetch-blob')
+compile project(':tflite-react-native')
     if (hermesEnabled.toBoolean()) {
         implementation("com.facebook.react:hermes-android")
     } else {

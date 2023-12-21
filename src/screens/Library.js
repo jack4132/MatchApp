@@ -167,7 +167,7 @@ const Library = ({navigation}) => {
                   play: isPlaying,
                   playableTime,
                   duration,
-                  sound,
+                  // sound,
                   id,
                 });
               }}>
